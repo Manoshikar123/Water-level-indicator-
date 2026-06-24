@@ -1,0 +1,35 @@
+int sensorPin = A0;
+int redLED = 8;
+int yellowLED = 9;
+int greenLED = 10;
+
+void setup() {
+  pinMode(redLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int level = analogRead(sensorPin);
+
+  Serial.println(level);
+
+  if(level < 300) {
+    digitalWrite(redLED, HIGH);
+    digitalWrite(yellowLED, LOW);
+    digitalWrite(greenLED, LOW);
+  }
+  else if(level < 600) {
+    digitalWrite(redLED, LOW);
+    digitalWrite(yellowLED, HIGH);
+    digitalWrite(greenLED, LOW);
+  }
+  else {
+    digitalWrite(redLED, LOW);
+    digitalWrite(yellowLED, LOW);
+    digitalWrite(greenLED, HIGH);
+  }
+
+  delay(500);
+}
